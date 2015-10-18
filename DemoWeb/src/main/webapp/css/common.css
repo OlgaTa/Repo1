@@ -1,0 +1,49 @@
+tr.oddrow {
+	background-color: #FFFFFF;
+}
+
+tr.evenrow {
+	background-color: #eeeeee;
+}
+
+div.mapsinfo {
+	height:20px;
+	width:100%;
+	position: relative;
+}
+
+div.themap {
+	height:485px;
+	width:100%;
+	position: relative;
+}
+
+.iframemap {
+	height:543px;
+	width:600px;
+}
+
+a {
+	color: #000;
+}
+
+a:hover {
+	color: #000;
+}
+
+a:visited {
+	color: #000;
+}
+
+a:active {
+	color: #000;
+}
+
+.noborder th, .noborder td {
+  border: 0px 0px 0px 0px;
+}
+
+.helptxt {
+	color: #000;
+	font-size:.8em;
+}

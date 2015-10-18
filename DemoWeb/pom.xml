@@ -1,0 +1,117 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.test.demo.test</groupId>
+	<artifactId>DemoWeb</artifactId>
+	<packaging>war</packaging>
+	<version>1.0-SNAPSHOT</version>
+	<name>DemoWeb Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<serverName>defaultServer</serverName>
+		<serverHome>C:\SrvappsLP\wlp8557\wlp</serverHome>
+		<!-- <maven.compiler.source>1.7</maven.compiler.source> -->
+		<!-- <maven.compiler.target>1.7</maven.compiler.target> -->
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.0</version>
+			<scope>provided</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>javax.ws.rs</groupId>
+			<artifactId>javax.ws.rs-api</artifactId>
+			<version>2.0</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>Liberty</id>
+			<name>Liberty Repository</name>
+			<url>http://public.dhe.ibm.com/ibmdl/export/pub/software/websphere/wasdev/maven/repository/</url>
+			<!-- <url>http://public.dhe.ibm.com/ibmdl/export/pub/software/websphere/wasdev/maven/repository/com/ibm/websphere/wlp/maven/plugins/</url> -->
+		</pluginRepository>
+	</pluginRepositories>
+
+	<build>
+		<finalName>demo</finalName>
+
+		<plugins>
+			<!--plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-antrun-plugin</artifactId> 
+				<version>1.1</version> <executions> <execution> <phase>validate</phase> <goals> 
+				<goal>run</goal> </goals> <configuration> <tasks> <echo>[project.build.directory]: 
+				${project.build.directory}</echo> <echo>[project.name]: ${project.name}</echo> 
+				<echo>[project.build.finalName]: ${project.build.finalName}</echo> <echo>[project.packaging]: 
+				${project.packaging}</echo> </tasks> </configuration> </execution> </executions> 
+				</plugin -->
+
+			<plugin>
+				<groupId>com.ibm.websphere.wlp.maven.plugins</groupId>
+				<artifactId>liberty-maven-plugin</artifactId>
+				<version>1.1</version>
+				<executions>
+					<execution>
+						<id>deploy-app</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>deploy</goal>
+						</goals>
+						<configuration>
+							<appArchive>${project.build.directory}/${project.build.finalName}.${project.packaging}</appArchive>
+						</configuration>
+					</execution>
+					<execution>
+						<id>stop-server</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>stop-server</goal>
+						</goals>
+						<configuration>
+							<timeout>60000</timeout>
+						</configuration>
+					</execution>
+
+					<execution>
+						<id>start-server</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>start-server</goal>
+						</goals>
+					</execution>
+
+				</executions>
+				<configuration>
+					<serverHome>${serverHome}</serverHome>
+					<serverName>${serverName}</serverName>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+
+</project>
