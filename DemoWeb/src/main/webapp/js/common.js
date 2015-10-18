@@ -28,7 +28,7 @@ $(document).ready(function(){
 });
 		    
 function bindAutoComplete() {
-    $("#search").autocomplete(ctx + "/autocomplete", {
+    $("#search").autocomplete(ctx + "/resources/autocomplete", {
         max: 15,
         delay: 100,
         minChars: 2,
