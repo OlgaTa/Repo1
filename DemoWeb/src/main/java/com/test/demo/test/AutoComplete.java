@@ -1,35 +1,35 @@
 package com.test.demo.test;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
-import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.UriInfo;
 
-//@Path("/resources")
 @Path("/autocomplete")
 public class AutoComplete {
-	@POST
-//	@Path("/autocomplete")
-	@Produces({MediaType.TEXT_PLAIN})
-	public String createData(@Context UriInfo aUriInfo, 
-							@Context HttpHeaders aHttpHeaders, 
-							@Context HttpServletRequest aRequest,
-							String aQuery) {
-		return "hello post";
-	}
-
 	@GET	
 	@Produces({MediaType.TEXT_PLAIN})
-	public String createDataGet(
-							@QueryParam(value = "q") String aQ) {
-		return "hello get";
+	public String createDataGet(@QueryParam(value = "q") String aQ) {
+		
+		System.out.println("search: " + aQ);
+
+		if (aQ == null || aQ.equals("")) return "";
+		
+		StringBuffer sb = new StringBuffer();
+		for (int i = 0; i < DemoConst.CITY_ARRAY.length; i++) {
+			if (DemoConst.CITY_ARRAY[i].toLowerCase().startsWith(aQ.toLowerCase())) {
+				if (i > 0) {
+					sb.append("\n");
+				}				
+				sb.append(DemoConst.CITY_ARRAY[i].replace("'", "&#039;"))
+				.append("|")
+				.append(DemoConst.CITY_ARRAY[i]);
+				
+				System.out.println("added: " + DemoConst.CITY_ARRAY[i]);
+			}
+		}
+		return sb.toString();
 	}
 
 }

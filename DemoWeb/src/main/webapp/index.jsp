@@ -17,19 +17,18 @@
 	</script>
 </head>
 <body>
-<c:if test="${'1' eq '1'}">
-something
-</c:if>
-<br/>
-hello: ${ctx}<br/>
+
+<h2>Select a City</h2>
 	<div class='well'>
 		<p><strong>Enter Search Criteria</strong></p>
 
 		<input type="text" class="input-large searchbox" value='${search}'
 			name='search' id='search' />
 								
-		<input type='hidden' name='hiddensearch' id='hiddensearch' /> 
-		<button type="submit" class="btn">Search</button> 
+		<input type='hidden' name='hiddensearch' id='hiddensearch' />
+	</div>
+
+	<div id='result'>
 	</div>
 
 </body>

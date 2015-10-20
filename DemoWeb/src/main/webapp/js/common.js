@@ -31,7 +31,7 @@ function bindAutoComplete() {
     $("#search").autocomplete(ctx + "/resources/autocomplete", {
         max: 15,
         delay: 100,
-        minChars: 2,
+        minChars: 1,
         autoFill: false,
         cacheLength: 0,
         selectFirst: false,

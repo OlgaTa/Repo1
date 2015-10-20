@@ -20,7 +20,7 @@
 	FONT-SIZE: 12px !important; OVERFLOW: hidden; CURSOR: default; PADDING-TOP: 2px
 }
 .ac_loading {
-	BACKGROUND: url(indicator.gif) #fff no-repeat right center
+	/*BACKGROUND: url(indicator.gif) #fff no-repeat right center*/
 }
 .ac_results UL LI.ac_odd {
 	BACKGROUND-COLOR: #fff; COLOR: #000; CURSOR: pointer
